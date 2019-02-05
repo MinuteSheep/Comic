@@ -13,6 +13,8 @@ class ComicItem(Item):
     # name = scrapy.Field()
     chapter_name = Field()    # chapter name, is also dir name
     chapter_url = Field()     # chapter's url
-    img_url = Field()         # images' url
-    img_path = Field()        # inamges' name
+    image_paths = Field()        # inamges' name
     
+    image_urls = Field()
+    images = Field()
+    image_results = Field()

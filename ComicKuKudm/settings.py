@@ -12,7 +12,9 @@ BOT_NAME = 'ComicKuKudm'
 SPIDER_MODULES = ['ComicKuKudm.spiders']
 NEWSPIDER_MODULE = 'ComicKuKudm.spiders'
 
-IMAGE_STORE = '~/Naruto'
+IMAGES_STORE = 'Naruto'
+
+IMAGES_EXPIRES = 30
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'ComicKuKudm (+http://www.yourdomain.com)'
@@ -65,7 +67,7 @@ DEFAULT_REQUEST_HEADERS = {
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'ComicKuKudm.pipelines.ComicDownloadPipline': 1,
+    'ComicKuKudm.pipelines.ImagesPipeline': 1,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
