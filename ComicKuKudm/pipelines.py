@@ -23,8 +23,8 @@ class ImagesPipeline(ImagesPipeline):
         item['image_paths'] = image_paths
         return item
 
-
-    def file_path(self,request,response=None,info=None):
+    def file_path(self, request, response=None, info=None):
         chapter_name = request.meta['item']['chapter_name']
-        path = chapter_name + '/' + request.meta['item']['image_urls'][0].split('/')[-1].strip()
+        path = chapter_name + '/' + request.meta['item']['name_url'].split(
+            '/')[-1].split('.')[0].strip() + '.jpg'
         return path
