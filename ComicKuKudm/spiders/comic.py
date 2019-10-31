@@ -22,14 +22,13 @@ class ComicSpider(Spider):
         for chapter_name, chapter_url in zip(chapter_names, chapter_urls):
             item = ComicItem()
             item['image'] = {
-                'chapter_name' : chapter_name,
-                'web_page' : '',
-                'image_url' : '',
-                'image_name' : '',
-                'download_path':''
+                'chapter_name': chapter_name,
+                'web_page': '',
+                'image_url': '',
+                'image_name': '',
+                'download_path': ''
             }
             item['chapter_url'] = self.chapter_server + chapter_url
-           # item['chapter_name'] = chapter_name
             yield Request(url=item['chapter_url'],
                           meta={'item': item},
                           callback=self.parse_page)
@@ -51,11 +50,8 @@ class ComicSpider(Spider):
 
     def parse_img(self, response):
         item = response.meta['item']
-        item['iamge']['web_page'] = response.url
-#       item['name_url'] = response.url
-        item['image_urls'] = [
-            self.img_server +
-            re.findall(self.img_patten,
-                       response.css('script::text').extract_first())[0]
-        ]
+        item['image']['web_page'] = response.url
+        item['image']['image_url'] = self.img_server + re.findall(
+            self.img_patten,
+            response.css('script::text').extract_first())[0]
         return item

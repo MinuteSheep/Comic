@@ -11,14 +11,5 @@ from scrapy import Item, Field
 class ComicItem(Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-#    chapter_name = Field()  # chapter name, is also dir name
     chapter_url = Field()  # chapter's url
-    image_paths = Field()  # inamges' name
-
-    image_urls = Field()
-    images = Field()
-    image_results = Field()
-
-    name_url = Field()
-
     image = Field()
