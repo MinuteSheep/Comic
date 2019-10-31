@@ -21,8 +21,15 @@ class ComicSpider(Spider):
         chapter_names = response.css('dd a:first-child::text').extract()
         for chapter_name, chapter_url in zip(chapter_names, chapter_urls):
             item = ComicItem()
+            item['image'] = {
+                'chapter_name' : chapter_name,
+                'web_page' : '',
+                'image_url' : '',
+                'image_name' : '',
+                'download_path':''
+            }
             item['chapter_url'] = self.chapter_server + chapter_url
-            item['chapter_name'] = chapter_name
+           # item['chapter_name'] = chapter_name
             yield Request(url=item['chapter_url'],
                           meta={'item': item},
                           callback=self.parse_page)
@@ -44,7 +51,8 @@ class ComicSpider(Spider):
 
     def parse_img(self, response):
         item = response.meta['item']
-        item['name_url'] = response.url
+        item['iamge']['web_page'] = response.url
+#       item['name_url'] = response.url
         item['image_urls'] = [
             self.img_server +
             re.findall(self.img_patten,
